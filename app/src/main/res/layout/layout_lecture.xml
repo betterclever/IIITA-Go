@@ -33,7 +33,8 @@
                     android:layout_marginLeft="10dp"
                     android:padding="4dp"
                     android:orientation="vertical"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
                     <TextView
@@ -41,16 +42,26 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:text="Convex Optimizations"/>
+                        android:text="Convex Optimization"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="10:00 AM - 11:00 AM"/>
 
                 </LinearLayout>
+
+                <TextView
+                    android:padding="4dp"
+                    android:textColor="#FFF"
+                    android:background="@color/colorAccent"
+                    android:text="Upcoming"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
