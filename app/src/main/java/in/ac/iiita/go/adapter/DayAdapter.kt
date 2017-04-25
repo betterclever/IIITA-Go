@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.realm.Realm
 import io.realm.RealmResults
+import kotlinx.android.synthetic.main.layout_lecture.view.*
 
 /**
  * Created by betterclever on 4/23/2017.
@@ -37,7 +38,11 @@ class DayAdapter(val context: Context) : RecyclerView.Adapter<DayAdapter.ViewHol
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindLecture(lecture: Lecture, context: Context){
-
+            itemView.lectureTitleTV.text = lecture.courseId
+            itemView.lectureTimeTV.text = lecture.startTime.toString()
+            //itemView.facultyTV.text = lecture.teachersRef!![0].name
+            itemView.locationTV.text = lecture.location
+            itemView.notificationSwitch.isChecked = lecture.notificationEnabled
         }
     }
 }

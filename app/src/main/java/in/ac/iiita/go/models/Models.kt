@@ -26,6 +26,8 @@ open class Lecture() : RealmObject() {
 
     open var teachersRef: RealmList<Faculty>? = null
 
+    open var notificationEnabled: Boolean = false
+
     constructor(_id: String?, startTime: Long, endTime: Long, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
         this._id = _id
         this.startTime = startTime

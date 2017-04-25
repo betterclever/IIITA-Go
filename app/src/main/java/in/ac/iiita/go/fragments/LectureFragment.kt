@@ -24,5 +24,6 @@ class LectureFragment : Fragment(), AnkoLogger {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewPager.adapter = DayViewPagerAdapter(activity.supportFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
     }
 }

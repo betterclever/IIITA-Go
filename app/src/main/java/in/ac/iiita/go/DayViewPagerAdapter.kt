@@ -15,4 +15,17 @@ class DayViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
 
     override fun getCount() = 6
 
+    override fun getPageTitle(position: Int): CharSequence {
+        return when(position){
+            0 -> "Mon"
+            1 -> "Tue"
+            2 -> "Wed"
+            3 -> "Thu"
+            4 -> "Fri"
+            5 -> "Sat"
+            else -> {
+                "Mon"
+            }
+        }
+    }
 }
