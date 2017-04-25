@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.ac.iiita.go.models.LectureFragment">
+    tools:context="in.ac.iiita.go.fragments.LectureFragment">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"

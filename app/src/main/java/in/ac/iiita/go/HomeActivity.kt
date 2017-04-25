@@ -1,7 +1,8 @@
 package `in`.ac.iiita.go
 
+import `in`.ac.iiita.go.fragments.LectureFragment
+import `in`.ac.iiita.go.models.Lecture
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
@@ -19,7 +21,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -32,6 +33,23 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navigationView = findViewById(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
+
+        addDummyDataToRealm()
+        supportFragmentManager.beginTransaction().add(R.id.homeFrame,LectureFragment()).commit()
+
+    }
+
+    fun addDummyDataToRealm(){
+        Realm.init(this)
+        val realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs",1230,3230,"SMAT430C","Monday","CC3","Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs1",1230,3230,"SMAT430C","Monday","CC3","Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs2",1230,3230,"SMAT430C","Monday","CC3","Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs3",1230,3230,"SMAT430C","Monday","CC3","Theory", null))
+
+        realm.commitTransaction()
     }
 
     override fun onBackPressed() {
@@ -43,7 +61,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home, menu)
         return true
     }
@@ -60,11 +77,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         val id = item.itemId
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -78,6 +94,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         drawer.closeDrawer(GravityCompat.START)
+
         return true
     }
 }

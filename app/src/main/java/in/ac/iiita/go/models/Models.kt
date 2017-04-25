@@ -1,5 +1,6 @@
 package `in`.ac.iiita.go.models
 
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
@@ -7,69 +8,105 @@ import io.realm.annotations.PrimaryKey
  * Created by betterclever on 4/16/2017.
  */
 
-open class Lecture(
-        @PrimaryKey open var _id: String,
+open class Lecture() : RealmObject() {
 
-        open var startTime: Long,
+    @PrimaryKey open var _id: String? = null
 
-        open var endTime: Long,
+    open var startTime: Long = 0
 
-        open var courseId: String,
+    open var endTime: Long = 0
 
-        open var day: String,
+    open var courseId: String? = null
 
-        open var location: String,
+    open var day: String? = null
 
-        open var lectureType: String,
+    open var location: String? = null
 
-        open var teachersRef: List<String>
+    open var lectureType: String? = null
 
-) : RealmObject()
+    open var teachersRef: RealmList<Faculty>? = null
 
-open class Faculty(
-        @PrimaryKey open var _id: String,
+    constructor(_id: String?, startTime: Long, endTime: Long, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
+        this._id = _id
+        this.startTime = startTime
+        this.endTime = endTime
+        this.courseId = courseId
+        this.day = day
+        this.location = location
+        this.lectureType = lectureType
+        this.teachersRef = teachersRef
+    }
+}
 
-        open var name: String,
+open class Faculty() : RealmObject() {
 
-        open var designation: String,
+    @PrimaryKey open var _id: String? = null
 
-        open var office: String,
+    open var name: String? = null
 
-        open var primaryContact: String,
+    open var designation: String? = null
 
-        open var email: String
+    open var office: String? = null
 
-) : RealmObject()
+    open var primaryContact: String? = null
+
+    open var email: String? = null
+
+    constructor(_id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
+        this._id = _id
+        this.name = name
+        this.designation = designation
+        this.office = office
+        this.primaryContact = primaryContact
+        this.email = email
+    }
+}
 
 
-open class Course(
-        @PrimaryKey open var _id: String,
+open class Course() : RealmObject() {
+    @PrimaryKey open var _id: String? = null
 
-        open var name: String,
+    open var name: String? = null
 
-        open var labCredits: String,
+    open var designation: String? = null
 
-        open var theoryCredits: String,
+    open var office: String? = null
 
-        open var type: String
+    open var primaryContact: String? = null
 
-) : RealmObject()
+    open var email: String? = null
 
-open class MessEvent(
-        @PrimaryKey open var _id: String,
+    constructor(_id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
+        this._id = _id
+        this.name = name
+        this.designation = designation
+        this.office = office
+        this.primaryContact = primaryContact
+        this.email = email
+    }
+}
 
-        open var startTime: Long,
+open class MessEvent() : RealmObject() {
+    @PrimaryKey open var _id: String? = null
 
-        open var endTime: Long,
+    open var name: String? = null
 
-        open var day: String,
+    open var designation: String? = null
 
-        open var hostelId: String,
+    open var office: String? = null
 
-        open var type: String,
+    open var primaryContact: String? = null
 
-        open var foodItems: List<String>
+    open var email: String? = null
 
-) : RealmObject()
+    constructor(_id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
+        this._id = _id
+        this.name = name
+        this.designation = designation
+        this.office = office
+        this.primaryContact = primaryContact
+        this.email = email
+    }
+}
 
 
