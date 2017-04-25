@@ -101,6 +101,8 @@ open class MessEvent() : RealmObject() {
 
     open var email: String? = null
 
+    open var notificationEnabled = false
+
     constructor(_id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
         this._id = _id
         this.name = name

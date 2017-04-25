@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.layout_lecture.view.*
  * Created by betterclever on 4/23/2017.
  */
 
-class DayAdapter(val context: Context) : RecyclerView.Adapter<DayAdapter.ViewHolder>() {
+class LectureAdapter(val context: Context) : RecyclerView.Adapter<LectureAdapter.ViewHolder>() {
 
     var lectures: RealmResults<Lecture>
 

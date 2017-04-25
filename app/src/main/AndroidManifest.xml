@@ -24,6 +24,11 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".BookAddActivity"
+            android:label="@string/title_activity_book_add"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
