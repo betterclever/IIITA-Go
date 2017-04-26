@@ -13,6 +13,7 @@ import android.view.MenuItem
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
+import org.jetbrains.anko.startActivity
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -80,6 +81,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val id = item.itemId
 
         if (id == R.id.nav_camera) {
+            startActivity<BookAddActivity>();
 
         } else if (id == R.id.nav_gallery) {
 

@@ -14,47 +14,115 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:layout_height="wrap_content">
 
-            <EditText
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_book_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Book Name"
-                android:drawableLeft="@drawable/ic_book_black_24dp"/>
+                android:padding="2dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/accNoEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Accession Number"/>
 
-        <android.support.design.widget.TextInputLayout
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/returnDateEditText"
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_book_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_date_range_black_24dp"
-                android:hint="Return Date"
-                android:inputType="date"/>
+                android:padding="2dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/bookNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Book Name"/>
 
-        <android.support.design.widget.TextInputLayout
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/notesET"
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_date_range_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_note_add_black_24dp"
-                android:hint="Additional Notes"/>
+                android:padding="2dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/returnDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Return Date"
+                    android:focusable="false"
+                    android:inputType="none"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_note_add_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/notesET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Additional Notes"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
 
         <Switch
             android:id="@+id/reminderSwitch"
