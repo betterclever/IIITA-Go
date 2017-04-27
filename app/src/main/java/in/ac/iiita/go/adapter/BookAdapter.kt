@@ -9,7 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import io.realm.Realm
 import io.realm.RealmResults
-import kotlinx.android.synthetic.main.layout_mess.view.*
+import kotlinx.android.synthetic.main.layout_library.view.*
+import java.text.SimpleDateFormat
 
 /**
  * Created by betterclever on 4/26/2017.
@@ -33,15 +34,17 @@ class BookAdapter(val context: Context) : RecyclerView.Adapter<BookAdapter.ViewH
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) =
-            ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.layout_mess, parent, false))
+            ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.layout_library, parent, false))
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindMessItem(libraryBook: LibraryBook, context: Context){
-            //itemView.lectureTitleTV.text = lecture.courseId
-            //itemView.lectureTimeTV.text = lecture.startTime.toString()
-            //itemView.facultyTV.text = lecture.teachersRef!![0].name
-            //itemView.locationTV.text = lecture.location
+
+            val sdf = SimpleDateFormat()
+            sdf.applyPattern("dd/MM/YYYY")
+
+            itemView.bookNameTV.text = libraryBook.name
+            itemView.returnDateTV.text = "Return Date: "+ sdf.format(libraryBook.issueDate)
             itemView.notificationSwitch.isChecked = libraryBook.reminderEnabled
         }
     }

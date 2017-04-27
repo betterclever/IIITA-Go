@@ -2,11 +2,14 @@ package `in`.ac.iiita.go.fragments
 
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.adapter.BookAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_library.*
 
 
 class LibraryFragment : Fragment() {
@@ -19,6 +22,9 @@ class LibraryFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = BookAdapter(context)
 
     }
 }

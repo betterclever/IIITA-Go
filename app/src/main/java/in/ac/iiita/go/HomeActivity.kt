@@ -1,6 +1,8 @@
 package `in`.ac.iiita.go
 
+import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.fragments.LectureFragment
+import `in`.ac.iiita.go.fragments.LibraryFragment
 import `in`.ac.iiita.go.models.Lecture
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -38,6 +40,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         addDummyDataToRealm()
         supportFragmentManager.beginTransaction().add(R.id.homeFrame,LectureFragment()).commit()
 
+        GoService().storeData(this)
     }
 
     fun addDummyDataToRealm(){
@@ -84,6 +87,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity<BookAddActivity>();
 
         } else if (id == R.id.nav_gallery) {
+            supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LibraryFragment()).commit()
 
         } else if (id == R.id.nav_slideshow) {
 
