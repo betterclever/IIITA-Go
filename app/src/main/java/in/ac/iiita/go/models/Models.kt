@@ -11,7 +11,7 @@ import java.util.*
 
 open class Lecture() : RealmObject() {
 
-    @PrimaryKey open var _id: String? = null
+    @PrimaryKey open var id: String? = null
 
     open var startTime: Long = 0
 
@@ -29,8 +29,8 @@ open class Lecture() : RealmObject() {
 
     open var notificationEnabled: Boolean = false
 
-    constructor(_id: String?, startTime: Long, endTime: Long, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
-        this._id = _id
+    constructor(id: String?, startTime: Long, endTime: Long, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
+        this.id = id
         this.startTime = startTime
         this.endTime = endTime
         this.courseId = courseId
@@ -43,7 +43,7 @@ open class Lecture() : RealmObject() {
 
 open class Faculty() : RealmObject() {
 
-    @PrimaryKey open var _id: String? = null
+    @PrimaryKey open var id: String? = null
 
     open var name: String? = null
 
@@ -55,8 +55,8 @@ open class Faculty() : RealmObject() {
 
     open var email: String? = null
 
-    constructor(_id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
-        this._id = _id
+    constructor(id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
+        this.id = id
         this.name = name
         this.designation = designation
         this.office = office
@@ -67,7 +67,7 @@ open class Faculty() : RealmObject() {
 
 
 open class Course() : RealmObject() {
-    @PrimaryKey open var _id: String? = null
+    @PrimaryKey open var id: String? = null
 
     open var name: String? = null
 
@@ -79,8 +79,8 @@ open class Course() : RealmObject() {
 
     open var teachers: RealmList<Faculty>? = null
 
-    constructor(_id: String?, name: String?, theory_credit: Int, lab_credit: Int, type: String?, teachers: RealmList<Faculty>?) : this() {
-        this._id = _id
+    constructor(id: String?, name: String?, theory_credit: Int, lab_credit: Int, type: String?, teachers: RealmList<Faculty>?) : this() {
+        this.id = id
         this.name = name
         this.theory_credit = theory_credit
         this.lab_credit = lab_credit
@@ -90,27 +90,33 @@ open class Course() : RealmObject() {
 }
 
 open class MessEvent() : RealmObject() {
-    @PrimaryKey open var _id: String? = null
+    @PrimaryKey open var id: String? = null
 
     open var day: String? = null
 
     open var type: String? = null
 
-    open var startTime: Long? = null
+    open var startTime: Long? = 0
 
-    open var endTime: Long? = null
+    open var endTime: Long? = 0
+
+    open var hostelNum : String? = null
 
     open var foodItems: RealmList<RealmString>? = null
 
     open var notificationEnabled: Boolean = false
 
-    constructor(_id: String?, day: String?, type: String?, startTime: Long?, endTime: Long?, foodItems: RealmList<RealmString>?) : this() {
-        this._id = _id
+    constructor(id: String?, day: String?, type: String?, startTime: Long?, endTime: Long?,hostelNum: String?, foodItems: RealmList<RealmString>?) : this() {
+        this.id = id
         this.day = day
         this.type = type
         this.startTime = startTime
         this.endTime = endTime
+        this.hostelNum = hostelNum
         this.foodItems = foodItems
+    }
+
+    companion object {
     }
 }
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.amulyakhare.textdrawable.TextDrawable
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.layout_mess.view.*
@@ -38,10 +39,6 @@ class MessAdapter(val context: Context) : RecyclerView.Adapter<MessAdapter.ViewH
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindMessItem(messEvent: MessEvent, context: Context){
-            //itemView.lectureTitleTV.text = lecture.courseId
-            //itemView.lectureTimeTV.text = lecture.startTime.toString()
-            //itemView.facultyTV.text = lecture.teachersRef!![0].name
-            //itemView.locationTV.text = lecture.location
             itemView.notificationSwitch.isChecked = messEvent.notificationEnabled
         }
     }
