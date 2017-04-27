@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
+    tools:context="in.ac.iiita.go.activities.Login">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:src="@drawable/bg"
+                android:layout_marginBottom="50dp"
+            ></ImageView>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+                <EditText
+                    android:id="@+id/enr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:hint="Enrolment Number"
+                    android:layout_margin="5dp"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_margin="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Your Section"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+            />
+
+            <Spinner
+                android:layout_margin="7dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:backgroundTint="@color/colorAccent"
+                android:background="@color/colorAccent"
+                android:textStyle="bold"
+                android:id="@+id/sec"
+            ></Spinner>
+
+            <Button
+                android:layout_margin="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Continue"
+                android:onClick="save"
+            />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
