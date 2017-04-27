@@ -83,15 +83,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_timetable) {
             startActivity<BookAddActivity>();
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_messMenu) {
             supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LibraryFragment()).commit()
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_library) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_lostFound) {
 
         } else if (id == R.id.nav_share) {
 

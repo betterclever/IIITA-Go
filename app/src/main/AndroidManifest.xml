@@ -24,7 +24,8 @@
             android:name=".BookAddActivity"
             android:label="@string/title_activity_book_add"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activities.Login">
+        <activity android:name=".activities.Login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
