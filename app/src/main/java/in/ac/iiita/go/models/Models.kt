@@ -92,25 +92,25 @@ open class Course() : RealmObject() {
 open class MessEvent() : RealmObject() {
     @PrimaryKey open var _id: String? = null
 
-    open var name: String? = null
+    open var day: String? = null
 
-    open var designation: String? = null
+    open var type: String? = null
 
-    open var office: String? = null
+    open var startTime: Long? = null
 
-    open var primaryContact: String? = null
+    open var endTime: Long? = null
 
-    open var email: String? = null
+    open var foodItems: RealmList<RealmString>? = null
 
-    open var notificationEnabled = false
+    open var notificationEnabled: Boolean = false
 
-    constructor(_id: String?, name: String?, designation: String?, office: String?, primaryContact: String?, email: String?) : this() {
+    constructor(_id: String?, day: String?, type: String?, startTime: Long?, endTime: Long?, foodItems: RealmList<RealmString>?) : this() {
         this._id = _id
-        this.name = name
-        this.designation = designation
-        this.office = office
-        this.primaryContact = primaryContact
-        this.email = email
+        this.day = day
+        this.type = type
+        this.startTime = startTime
+        this.endTime = endTime
+        this.foodItems = foodItems
     }
 }
 
@@ -131,5 +131,13 @@ open class LibraryBook() : RealmObject() {
         this.issueDate = issueDate
         this.additionalNotes = additionalNotes
         this.reminderEnabled = reminderEnabled
+    }
+}
+
+open class RealmString() : RealmObject(){
+    open var stringVal: String? = null
+
+    constructor(stringVal: String?) : this() {
+        this.stringVal = stringVal
     }
 }
