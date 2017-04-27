@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import in.ac.iiita.go.HomeActivity;
 import in.ac.iiita.go.R;
 
 public class Login extends AppCompatActivity {

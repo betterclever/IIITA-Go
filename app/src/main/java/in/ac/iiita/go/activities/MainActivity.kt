@@ -1,5 +1,6 @@
-package `in`.ac.iiita.go
+package `in`.ac.iiita.go.activities
 
+import `in`.ac.iiita.go.R
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
