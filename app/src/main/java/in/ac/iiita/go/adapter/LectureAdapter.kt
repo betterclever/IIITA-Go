@@ -1,6 +1,7 @@
 package `in`.ac.iiita.go.adapter
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.models.Course
 import `in`.ac.iiita.go.models.Lecture
 import android.content.Context
 import android.graphics.Color
@@ -12,45 +13,90 @@ import com.amulyakhare.textdrawable.TextDrawable
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.layout_lecture.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by betterclever on 4/23/2017.
  */
 
-class LectureAdapter(val context: Context) : RecyclerView.Adapter<LectureAdapter.ViewHolder>() {
+class LectureAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<LectureAdapter.ViewHolder>() {
 
     var lectures: RealmResults<Lecture>
 
     init {
+
         Realm.init(context)
         val realm = Realm.getDefaultInstance()
-        lectures = realm.where(Lecture::class.java).findAll()
+        val day = when(dayNum){
+            0 -> "Monday"
+            1 -> "Tuesday"
+            2 -> "Wednesday"
+            3 -> "Thursday"
+            4 -> "Friday"
+            5 -> "Saturday"
+            else -> "Sunday"
+        }
+
+        val sharedPref = context.getSharedPreferences("INFO_USR",Context.MODE_PRIVATE)
+        val semester = sharedPref.getString("SEMESTER","4")
+        val section = sharedPref.getString("SECTION","A")
+
+
+        lectures = realm.where(Lecture::class.java)
+                .equalTo("day",day)
+                .like("id", "????$semester*")
+                .equalTo("section",section)
+                .findAll()
     }
 
 
     override fun getItemCount() = lectures.size
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder!!.bindLecture(lectures[position],context)
+        holder!!.bindLecture(lectures[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) =
             ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.layout_lecture, parent, false))
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindLecture(lecture: Lecture, context: Context){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val realm = Realm.getDefaultInstance()
+
+        fun bindLecture(lecture: Lecture){
 
             val ch = lecture.courseId!![1]
-
             itemView.iconIV.setImageDrawable(TextDrawable.builder().
                     buildRound(ch.toString().capitalize(), Color.RED))
 
-            itemView.lectureTitleTV.text = lecture.courseId
-            itemView.lectureTimeTV.text = lecture.startTime.toString()
-            //itemView.facultyTV.text = lecture.teachersRef!![0].name
+            val course = realm.where(Course::class.java)
+                    .equalTo("id",lecture.courseId).findFirst()
+
+            itemView.lectureTitleTV.text = course.name
+            itemView.lectureTimeTV.text = lecture.startTime!!.toTimeString() + " - " +
+                    lecture.endTime!!.toTimeString()
+
             itemView.locationTV.text = lecture.location
             itemView.notificationSwitch.isChecked = lecture.notificationEnabled
+
+            var teachersStr = ""
+            for (teacher in lecture.teachersRef!!){
+                teachersStr += "\u25CF  " + teacher.name + "\n"
+            }
+
+            itemView.facultyTV.text = teachersStr
+        }
+
+        fun Long.toTimeString() : String{
+
+            val millis = this.times(1000)
+            val df = SimpleDateFormat("hh:mm a")
+            df.timeZone = TimeZone.getTimeZone("GMT")
+            val str = df.format(millis)
+
+            return str
         }
     }
 }

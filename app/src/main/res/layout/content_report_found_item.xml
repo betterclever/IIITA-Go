@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="in.ac.iiita.go.activities.BookAddActivity"
-    tools:showIn="@layout/activity_book_add">
+    tools:context="in.ac.iiita.go.activities.ReportFoundItemActivity"
+    tools:showIn="@layout/activity_report_found_item">
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,10 +32,10 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/accNoEditText"
+                    android:id="@+id/itemNameET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Accession Number"/>
+                    android:hint="Name of Item"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -58,10 +59,10 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/bookNameEditText"
+                    android:id="@+id/itemDescriptionET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Book Name"/>
+                    android:hint="Short Description"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -84,10 +85,10 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/returnDateEditText"
+                    android:id="@+id/fountDateET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Return Date"
+                    android:hint="Found Date"
                     android:focusable="false"
                     android:inputType="none"/>
 
@@ -95,6 +96,59 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_date_range_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/foundTimeET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Found Time"
+                    android:focusable="false"
+                    android:inputType="none"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_date_range_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/founderNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Your Name"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,22 +170,13 @@
                     android:id="@+id/notesET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Additional Notes"/>
+                    android:inputType="phone"
+                    android:hint="Your Contact Number"/>
 
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
-
-
-        <Switch
-            android:id="@+id/reminderSwitch"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:textSize="16sp"
-            android:text="Enable Return Reminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

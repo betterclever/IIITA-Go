@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="in.ac.iiita.go.activities.Login">
 
     <LinearLayout
@@ -69,34 +70,56 @@
 
         </android.support.design.widget.TextInputLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <LinearLayout
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="7dp"
-                android:text="Select Your Course"
-                android:textColor="#FFF" />
+                android:layout_margin="20dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/course"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="7dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginRight="100dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:text="Course"
+                    android:textColor="#FFF" />
 
+                <Spinner
+                    android:id="@+id/courseSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="7dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="100dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:text="Hostel"
+                    android:textColor="#FFF" />
+
+                <Spinner
+                    android:id="@+id/hostelSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+            </LinearLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,7 +128,7 @@
             android:weightSum="1">
 
             <LinearLayout
-                android:layout_width="180dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="0.5"
@@ -119,13 +142,13 @@
                     android:textColor="#FFF" />
 
                 <Spinner
-                    android:id="@+id/sem"
+                    android:id="@+id/semSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="50dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="0.5"
@@ -139,21 +162,23 @@
                     android:textColor="#FFF" />
 
                 <Spinner
-                    android:id="@+id/sec"
+                    android:id="@+id/secSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="50dp" />
             </LinearLayout>
         </LinearLayout>
 
         <Button
+            android:id="@+id/loginButton"
             style="@style/Base.Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
             android:layout_marginRight="20dp"
             android:onClick="save"
+            android:background="@color/colorPrimary"
             android:text="Continue" />
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

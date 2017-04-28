@@ -14,7 +14,7 @@ class LectureViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
 
     override fun getItem(position: Int) = LectureDayFragment().withArguments("dayNum" to position)
 
-    override fun getCount() = 6
+    override fun getCount() = 5
 
     override fun getPageTitle(position: Int): CharSequence {
         return when(position){
@@ -23,7 +23,6 @@ class LectureViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
             2 -> "Wed"
             3 -> "Thu"
             4 -> "Fri"
-            5 -> "Sat"
             else -> {
                 "Mon"
             }

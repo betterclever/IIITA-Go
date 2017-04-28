@@ -39,20 +39,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/lectureTitleTV"
+                        android:id="@+id/foundTitleTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:text="Convex Optimization"/>
+                        android:text="Name"/>
 
-                    <TextView
-                        android:id="@+id/lectureTimeTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:textSize="16sp"
-                        android:text="10:00 AM - 11:00 AM"/>
 
                 </LinearLayout>
 
@@ -61,7 +54,7 @@
                     android:padding="4dp"
                     android:textColor="#FFF"
                     android:background="@color/colorAccent"
-                    android:text="Upcoming"
+                    android:text="Recent"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
@@ -74,24 +67,36 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <TextView
-                    android:id="@+id/facultyTV"
+                    android:id="@+id/descriptionFoundTV"
                     android:padding="5dp"
-                    android:text="Abdullaha Abu Bin Baker"
+                    android:text="Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/founderNameTV"
+                    android:padding="5dp"
+                    android:text="Found by"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/locationTV"
+                    android:id="@+id/extraFoundTV"
                     android:padding="5dp"
-                    android:text="Computer Centre 3: 5106"
+                    android:text="Extra Detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/founderPhoneTV"
+                    android:padding="5dp"
+                    android:text="Contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="invisible"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
