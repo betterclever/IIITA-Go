@@ -5,6 +5,8 @@ import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.fragments.LectureFragment
 import `in`.ac.iiita.go.fragments.LibraryFragment
 import `in`.ac.iiita.go.fragments.MessFragment
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
@@ -14,6 +16,10 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+
+        FirebaseApp.initializeApp(this)
+
+        FirebaseMessaging.getInstance().subscribeToTopic("everything")
 
         fab.setOnClickListener { view ->
             android.support.design.widget.Snackbar.make(view, "Replace with your own action", android.support.design.widget.Snackbar.LENGTH_LONG)
