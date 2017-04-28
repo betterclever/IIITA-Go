@@ -5,30 +5,41 @@ import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.fragments.LectureFragment
 import `in`.ac.iiita.go.fragments.LibraryFragment
 import `in`.ac.iiita.go.fragments.MessFragment
+import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
-class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support.design.widget.NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    override fun onCreate(savedInstanceState: android.os.Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            android.support.design.widget.Snackbar.make(view, "Replace with your own action", android.support.design.widget.Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
 
-        val toggle = android.support.v7.app.ActionBarDrawerToggle(
+        val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById(R.id.nav_view) as android.support.design.widget.NavigationView
         navigationView.setNavigationItemSelectedListener(this)
 
-        supportFragmentManager.beginTransaction().add(R.id.homeFrame, `in`.ac.iiita.go.fragments.LectureFragment()).commit()
+
+        val nameTV = navigationView.getHeaderView(0).findViewById(R.id.nameTV) as TextView
+        nameTV.text = "Pranjal Paliwal"
+
+        supportFragmentManager.beginTransaction().add(R.id.homeFrame, LectureFragment()).commit()
 
         val go = GoService(this)
         go.storeData()
@@ -36,8 +47,8 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
     }
 
     override fun onBackPressed() {
-        if (drawer.isDrawerOpen(android.support.v4.view.GravityCompat.START)) {
-            drawer.closeDrawer(android.support.v4.view.GravityCompat.START)
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -48,7 +59,7 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         return true
     }
 
-    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
 
@@ -59,7 +70,7 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
         when(id){

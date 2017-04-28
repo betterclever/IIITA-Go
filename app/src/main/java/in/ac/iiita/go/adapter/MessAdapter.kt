@@ -50,7 +50,10 @@ class MessAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<Mess
             ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.layout_mess, parent, false))
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val realm = Realm.getDefaultInstance()
+
         fun bindMessItem(messEvent: MessEvent, context: Context){
             itemView.foodTitleTV.text = messEvent.type
             itemView.timeTV.text = messEvent.startTime!!.toTimeString() + " - " +
@@ -64,6 +67,12 @@ class MessAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<Mess
             itemView.foodTV.text = foodString
 
             itemView.notificationSwitch.isChecked = messEvent.notificationEnabled
+
+            itemView.notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                realm.beginTransaction()
+                messEvent.notificationEnabled = isChecked
+                realm.commitTransaction()
+            }
         }
 
         fun Long.toTimeString() : String{

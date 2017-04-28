@@ -87,6 +87,12 @@ class LectureAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<L
             }
 
             itemView.facultyTV.text = teachersStr
+
+            itemView.notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                realm.beginTransaction()
+                lecture.notificationEnabled = isChecked
+                realm.commitTransaction()
+            }
         }
 
         fun Long.toTimeString() : String{

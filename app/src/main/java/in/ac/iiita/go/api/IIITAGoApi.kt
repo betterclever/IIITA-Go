@@ -41,7 +41,7 @@ class GoService(val context: Context) : AnkoLogger {
 
     init {
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://172.26.46.140:3000/api/v1/")
+                .baseUrl("http://172.31.1.111:3000/api/v1/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
         info(retrofit.baseUrl().toString())
@@ -78,7 +78,7 @@ class GoService(val context: Context) : AnkoLogger {
             val realm = Realm.getDefaultInstance()
 
             val request = Request.Builder()
-                    .url("http://172.26.46.140:3000/api/v1/Courses")
+                    .url("http://172.31.1.111:3000/api/v1/Courses")
                     .build()
 
             val response = client.newCall(request).execute()
@@ -130,7 +130,7 @@ class GoService(val context: Context) : AnkoLogger {
             val realm = Realm.getDefaultInstance()
 
             val request = Request.Builder()
-                    .url("http://172.26.46.140:3000/api/v1/Lectures")
+                    .url("http://172.31.1.111:3000/api/v1/Lectures")
                     .build()
 
             val response = client.newCall(request).execute()
@@ -183,7 +183,7 @@ class GoService(val context: Context) : AnkoLogger {
             val realm = Realm.getDefaultInstance()
 
             val request = Request.Builder()
-                    .url("http://172.26.46.140:3000/api/v1/MessSchedule")
+                    .url("http://172.31.1.111:3000/api/v1/MessSchedule")
                     .build()
 
             val response = client.newCall(request).execute()
