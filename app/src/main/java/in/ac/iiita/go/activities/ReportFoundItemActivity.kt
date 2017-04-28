@@ -1,7 +1,9 @@
 package `in`.ac.iiita.go.activities
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.models.FoundItem
+import `in`.ac.iiita.go.models.Notification
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -10,8 +12,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.content_report_found_item.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
+import org.jetbrains.anko.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,6 +51,9 @@ class ReportFoundItemActivity : AppCompatActivity(), AnkoLogger {
             TimePickerDialog(this, timeSetListener, time[Calendar.HOUR],
                     time[Calendar.MINUTE],false).show()
         }
+
+        val goService = GoService(this)
+
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -64,6 +68,18 @@ class ReportFoundItemActivity : AppCompatActivity(), AnkoLogger {
                     founderPhone = notesET.text.toString().toLong())
 
             info(report)
+
+            doAsync {
+                goService.iiitaGoApi.reportNewFoundItem(report)
+                goService.notificationApi.sendNotification(Notification(
+                        title = report.name + " lost",
+                        body = report.description
+                ))
+                uiThread {
+                    toast("Submitted Item")
+                    finish()
+                }
+            }
         }
     }
     fun updateLabel() {

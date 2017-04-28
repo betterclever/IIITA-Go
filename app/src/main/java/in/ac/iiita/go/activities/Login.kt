@@ -72,7 +72,7 @@ class Login : AppCompatActivity() {
         hostelSpinner.adapter = adapterHostel
 
         // For testing duration only
-        //startActivity<ReportLostItemActivity>()
+        startActivity<HomeActivity>()
     }
 
     fun save(view: View) {
@@ -97,7 +97,7 @@ class Login : AppCompatActivity() {
 
                         val editor = sharedPreferences.edit()
                         editor.putString("NAME", name.text.toString())
-                        editor.putString("ROLL", enr.toString())
+                        editor.putString("ROLL", enr.text.toString())
                         editor.putString("SEC", secSpinner.selectedItem.toString())
                         editor.putString("COURSE", courseSpinner.selectedItem.toString())
                         editor.putString("SEMESTER", semSpinner.selectedItem.toString())

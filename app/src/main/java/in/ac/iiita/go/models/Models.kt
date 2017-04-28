@@ -168,3 +168,8 @@ class FoundItem(
         val extraDetail: String,
         val founderPhone: Long
 )
+
+class Notification(
+        val title: String,
+        val body: String
+)

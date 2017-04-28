@@ -36,6 +36,11 @@ class LostItemAdapter: RecyclerView.Adapter<LostItemAdapter.ViewHolder>() {
             itemView.extraTV.text = lostItem.extraDetail
         }
     }
+
+    fun addItems(lostItems : List<LostItem>){
+        this.lostItems.addAll(lostItems)
+        notifyDataSetChanged()
+    }
 }
 
 class FoundItemAdapter: RecyclerView.Adapter<FoundItemAdapter.ViewHolder>() {
@@ -59,5 +64,10 @@ class FoundItemAdapter: RecyclerView.Adapter<FoundItemAdapter.ViewHolder>() {
             itemView.founderPhoneTV.text = item.founderPhone.toString()
             itemView.extraFoundTV.text = item.extraDetail
         }
+    }
+
+    fun addItems(foundItems: List<FoundItem>){
+        this.foundItems.addAll(foundItems)
+        notifyDataSetChanged()
     }
 }

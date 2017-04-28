@@ -1,17 +1,17 @@
 package `in`.ac.iiita.go.activities
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.models.LostItem
+import `in`.ac.iiita.go.models.Notification
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_report_lost_item.*
 import kotlinx.android.synthetic.main.content_report_lost_item.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
+import org.jetbrains.anko.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,10 +49,12 @@ class ReportLostItemActivity : AppCompatActivity(),AnkoLogger {
                     time[Calendar.MINUTE],false).show()
         }
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+        val goService = GoService(this)
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+
+            /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()*/
 
             val report =  LostItem(
                     id = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(Date()),
@@ -61,7 +63,18 @@ class ReportLostItemActivity : AppCompatActivity(),AnkoLogger {
                     ownerName = ownerNameTV.text.toString(),
                     extraDetail = lostDateET.text.toString()+ " " + lostTimeET.text.toString(),
                     ownerPhone = notesET.text.toString().toLong())
-            info(report)
+
+            doAsync {
+                goService.iiitaGoApi.reportNewLostItem(report)
+                goService.notificationApi.sendNotification(Notification(
+                        title = report.name + " lost",
+                        body = report.description
+                ))
+                uiThread {
+                    toast("Submitted Item")
+                    finish()
+                }
+            }
         }
 
 

@@ -4,9 +4,9 @@ import `in`.ac.iiita.go.R
 import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.fragments.LectureFragment
 import `in`.ac.iiita.go.fragments.LibraryFragment
+import `in`.ac.iiita.go.fragments.LostFound
 import `in`.ac.iiita.go.fragments.MessFragment
-import com.google.firebase.FirebaseApp
-import com.google.firebase.messaging.FirebaseMessaging
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
@@ -15,6 +15,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.TextView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
@@ -43,7 +45,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         val nameTV = navigationView.getHeaderView(0).findViewById(R.id.nameTV) as TextView
-        nameTV.text = "Pranjal Paliwal"
+        val rollNumTV = navigationView.getHeaderView(0).findViewById(R.id.rollNumTV) as TextView
+
+        val sharedPref = getSharedPreferences("INFO_USR", Context.MODE_PRIVATE)
+        val name = sharedPref.getString("NAME","IIITA Student")
+        val rollNum = sharedPref.getString("ROLL","")
+
+
+
+        nameTV.text = name
+        rollNumTV.text = rollNum
 
         supportFragmentManager.beginTransaction().add(R.id.homeFrame, LectureFragment()).commit()
 
@@ -80,6 +91,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val id = item.itemId
 
         when(id){
+
             R.id.nav_timetable ->
                 supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LectureFragment()).commit()
 
@@ -88,6 +100,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.nav_library ->
                 supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LibraryFragment()).commit()
+
+            R.id.nav_lostFound ->
+                supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LostFound()).commit()
+
         }
 
         drawer.closeDrawer(android.support.v4.view.GravityCompat.START)

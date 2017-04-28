@@ -85,7 +85,7 @@ class GoNotificationService : Service(){
                 for((i, lecture) in nearLectures.withIndex()){
 
                     val builder = NotificationCompat.Builder(this@GoNotificationService)
-                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setSmallIcon(R.drawable.ic_noti)
                             .setContentTitle(lecture.courseId+ " Lecture Starting in 10 minutes")
                             .setContentText("Location: " +lecture.location)
 
@@ -101,7 +101,7 @@ class GoNotificationService : Service(){
                     }
 
                     val builder = NotificationCompat.Builder(this@GoNotificationService)
-                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setSmallIcon(R.drawable.ic_noti)
                             .setContentTitle(messEvent.type + " in 10 minutes ")
                             .setContentText(foodString)
 

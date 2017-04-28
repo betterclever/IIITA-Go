@@ -35,7 +35,13 @@ class MessAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<Mess
             else -> "Sunday"
         }
 
-        messItems = realm.where(MessEvent::class.java).equalTo("day",day).findAll()
+        val sharedPref = context.getSharedPreferences("INFO_USR",Context.MODE_PRIVATE)
+        val hostelNum = sharedPref.getString("HOSTEL","bh2")
+
+        messItems = realm.where(MessEvent::class.java)
+                .equalTo("day",day)
+                .equalTo("hostelNum",hostelNum)
+                .findAll()
 
     }
 

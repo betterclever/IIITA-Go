@@ -13,7 +13,9 @@ import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /*
@@ -28,14 +30,35 @@ interface IIITAGoApi {
     @GET("LostItems")
     fun getLostItems(@Query("where") name: String): Call<List<LostItem>>
 
+    @GET("LostItems")
+    fun getAllLostItems(): Call<List<LostItem>>
+
     @GET("FoundItems")
     fun getFoundItems(@Query("where") name: String): Call<List<FoundItem>>
+
+    @GET("FoundItems")
+    fun getAllFoundItems(): Call<List<FoundItem>>
+
+    @POST("LostItems")
+    fun reportNewLostItem(@Body item: LostItem)
+
+    @POST("FoundItems")
+    fun reportNewFoundItem(@Body item: FoundItem)
+
+}
+
+interface NotificationAPI {
+
+    @POST("fcm")
+    fun sendNotification(@Body notification: Notification)
 
 }
 
 class GoService(val context: Context) : AnkoLogger {
 
-    private val iiitaGoApi: IIITAGoApi
+    val iiitaGoApi: IIITAGoApi
+    val notificationApi: NotificationAPI
+
     private val client = OkHttpClient()
 
     init {
@@ -45,7 +68,16 @@ class GoService(val context: Context) : AnkoLogger {
                 .build()
         info(retrofit.baseUrl().toString())
         iiitaGoApi = retrofit.create(IIITAGoApi::class.java)
+
+        val retorifit2 = Retrofit.Builder()
+                .baseUrl("http://172.31.1.111:3000/notification/")
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+
+        notificationApi = retorifit2.create(NotificationAPI::class.java)
     }
+
+
 
     fun storeData() {
 

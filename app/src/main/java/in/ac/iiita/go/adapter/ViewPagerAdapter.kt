@@ -1,7 +1,10 @@
 package `in`.ac.iiita.go.adapter
 
+import `in`.ac.iiita.go.fragments.FoundFragment
 import `in`.ac.iiita.go.fragments.LectureDayFragment
+import `in`.ac.iiita.go.fragments.LostFragment
 import `in`.ac.iiita.go.fragments.MessDayFragment
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import org.jetbrains.anko.support.v4.withArguments
@@ -47,6 +50,25 @@ class MessViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
             else -> {
                 "Sun"
             }
+        }
+    }
+}
+
+class LostFoundPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
+
+    override fun getItem(position: Int): Fragment? {
+        when(position){
+            0 -> return LostFragment()
+            else -> return FoundFragment()
+        }
+    }
+
+    override fun getCount() = 2
+
+    override fun getPageTitle(position: Int): CharSequence {
+        return when(position){
+            0 -> "Lost Items"
+            else -> "Found Items"
         }
     }
 }

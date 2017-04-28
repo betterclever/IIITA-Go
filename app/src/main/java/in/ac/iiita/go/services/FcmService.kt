@@ -1,14 +1,13 @@
 package `in`.ac.iiita.go.services
 
+import `in`.ac.iiita.go.R
 import android.app.NotificationManager
+import android.content.Context
 import android.graphics.Color
 import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-
-import `in`.ac.iiita.go.R
-import android.content.Context
 
 
 /**
@@ -18,10 +17,10 @@ import android.content.Context
 
 class FcmService : FirebaseMessagingService() {
 
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
-        if (remoteMessage!!.notification != null) {
+        if (remoteMessage.notification != null) {
 
             Log.i(TAG, "Notification: " + remoteMessage.notification.body)
 
