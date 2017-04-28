@@ -42,22 +42,34 @@ class Login : AppCompatActivity() {
         spinnerArraySemester.add("7")
         spinnerArraySemester.add("8")
 
+        val spinnerArrayHostel = ArrayList<String>()
+        spinnerArrayHostel.add("BH1");
+        spinnerArrayHostel.add("BH2");
+        spinnerArrayHostel.add("BH3");
+        spinnerArrayHostel.add("BH4");
+        spinnerArrayHostel.add("BH5");
+        spinnerArrayHostel.add("GH1");
+        spinnerArrayHostel.add("GH2");
+        spinnerArrayHostel.add("GH3");
+
         val adapterSection = ArrayAdapter(
                 this, android.R.layout.simple_spinner_item, spinnerArraySection)
         val adapterCourse = ArrayAdapter(
                 this, android.R.layout.simple_spinner_item, spinnerArrayCourse)
         val adapterSemester = ArrayAdapter(
                 this, android.R.layout.simple_spinner_item, spinnerArraySemester)
+        val adapterHostel = ArrayAdapter(
+                this, android.R.layout.simple_spinner_item, spinnerArrayHostel)
 
         adapterSemester.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         adapterCourse.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         adapterSection.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
+        adapterHostel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         secSpinner.adapter = adapterSection
         courseSpinner.adapter = adapterCourse
         semSpinner.adapter = adapterSemester
-
+        hostelSpinner.adapter = adapterHostel
 
         // For testing duration only
         startActivity<HomeActivity>()
@@ -86,6 +98,7 @@ class Login : AppCompatActivity() {
                     editor.putString("SEC", secSpinner.selectedItem.toString())
                     editor.putString("COURSE", courseSpinner.selectedItem.toString())
                     editor.putString("SEMESTER", semSpinner.selectedItem.toString())
+                    editor.putString("HOSTEL",hostelSpinner.selectedItem.toString().toLowerCase())
                     editor.commit()
 
                     toast("Logged in Successfully!! ")
