@@ -31,7 +31,6 @@ interface IIITAGoApi {
     @GET("FoundItems")
     fun getFoundItems(@Query("where") name: String): Call<List<FoundItem>>
 
-
 }
 
 class GoService(val context: Context) : AnkoLogger {
