@@ -72,7 +72,7 @@ class Login : AppCompatActivity() {
         hostelSpinner.adapter = adapterHostel
 
         // For testing duration only
-        startActivity<ReportLostItemActivity>()
+        //startActivity<ReportLostItemActivity>()
     }
 
     fun save(view: View) {
@@ -84,33 +84,46 @@ class Login : AppCompatActivity() {
                     .addConverterFactory(MoshiConverterFactory.create())
                     .build()
             val api_auth: LoginAPI = retrofit.create(LoginAPI::class.java)
-            val response = api_auth.checkAuth(enr.text.toString() , pass.text.toString()).execute()
 
-            if("1" == response.body()) {
+            try {
+                val response = api_auth.checkAuth(enr.text.toString() , pass.text.toString()).execute()
 
-                uiThread {
 
-                    val sharedPreferences = getSharedPreferences("INFO_USR", Context.MODE_PRIVATE)
+                if("1" == response.body()) {
 
-                    val editor = sharedPreferences.edit()
-                    editor.putString("NAME", name.text.toString())
-                    editor.putString("ROLL", enr.toString())
-                    editor.putString("SEC", secSpinner.selectedItem.toString())
-                    editor.putString("COURSE", courseSpinner.selectedItem.toString())
-                    editor.putString("SEMESTER", semSpinner.selectedItem.toString())
-                    editor.putString("HOSTEL",hostelSpinner.selectedItem.toString().toLowerCase())
-                    editor.commit()
+                    uiThread {
 
-                    toast("Logged in Successfully!! ")
-                    startActivity<HomeActivity>()
+                        val sharedPreferences = getSharedPreferences("INFO_USR", Context.MODE_PRIVATE)
+
+                        val editor = sharedPreferences.edit()
+                        editor.putString("NAME", name.text.toString())
+                        editor.putString("ROLL", enr.toString())
+                        editor.putString("SEC", secSpinner.selectedItem.toString())
+                        editor.putString("COURSE", courseSpinner.selectedItem.toString())
+                        editor.putString("SEMESTER", semSpinner.selectedItem.toString())
+                        editor.putString("HOSTEL", hostelSpinner.selectedItem.toString().toLowerCase())
+                        editor.commit()
+
+                        toast("Logged in Successfully!! ")
+                        startActivity<HomeActivity>()
+                    }
                 }
 
-            }else{
+                else{
 
-                uiThread {
-                    toast("Wrong LDAP Credentials")
+                    uiThread {
+                        toast("Wrong LDAP Credentials")
+                    }
                 }
             }
+            catch (exception: Exception){
+
+                uiThread {
+                    toast("Network Error")
+                }
+            }
+
+
         }
 
     }

@@ -60,7 +60,7 @@ class ReportFoundItemActivity : AppCompatActivity(), AnkoLogger {
                     name = itemNameET.text.toString(),
                     description = itemDescriptionET.text.toString(),
                     founderName = founderNameTV.text.toString(),
-                    founderExtraDetail = foundDateET.text.toString()+" " + foundTimeET.text.toString(),
+                    extraDetail = foundDateET.text.toString()+" " + foundTimeET.text.toString(),
                     founderPhone = notesET.text.toString().toLong())
 
             info(report)

@@ -156,7 +156,7 @@ class LostItem(
         val name: String,
         val description: String,
         val ownerName: String,
-        val ownerExtraDetail: String,
+        val extraDetail: String,
         val ownerPhone: Long
 )
 
@@ -165,6 +165,6 @@ class FoundItem(
         val name: String,
         val description: String,
         val founderName: String,
-        val founderExtraDetail: String,
+        val extraDetail: String,
         val founderPhone: Long
 )

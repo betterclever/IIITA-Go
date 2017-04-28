@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.content_report_lost_item.*
 import android.support.v7.widget.Toolbar
+import kotlinx.android.synthetic.main.content_report_lost_item.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.text.SimpleDateFormat
@@ -59,7 +59,7 @@ class ReportLostItemActivity : AppCompatActivity(),AnkoLogger {
                     name = itemNameET.text.toString(),
                     description = itemDescriptionET.text.toString(),
                     ownerName = ownerNameTV.text.toString(),
-                    ownerExtraDetail = lostDateET.text.toString()+ " " + lostTimeET.text.toString(),
+                    extraDetail = lostDateET.text.toString()+ " " + lostTimeET.text.toString(),
                     ownerPhone = notesET.text.toString().toLong())
             info(report)
         }
