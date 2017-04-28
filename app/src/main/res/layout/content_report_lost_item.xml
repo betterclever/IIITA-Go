@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="in.ac.iiita.go.activities.ReportFoundItemActivity"
-    tools:showIn="@layout/activity_report_found_item">
+    tools:context="in.ac.iiita.go.activities.ReportLostItemActivity"
+    tools:showIn="@layout/activity_report_lost_item">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -83,10 +83,10 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/foundDateET"
+                    android:id="@+id/lostDateET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Found Date"
+                    android:hint="Lost Date"
                     android:focusable="false"
                     android:inputType="none"/>
 
@@ -111,10 +111,10 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/foundTimeET"
+                    android:id="@+id/lostTimeET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Found Time"
+                    android:hint="Lost Time"
                     android:focusable="false"
                     android:inputType="none"/>
 
@@ -139,7 +139,7 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/founderNameTV"
+                    android:id="@+id/ownerNameTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Your Name"/>

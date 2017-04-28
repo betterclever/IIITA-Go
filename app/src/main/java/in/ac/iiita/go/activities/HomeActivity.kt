@@ -5,6 +5,8 @@ import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.fragments.LectureFragment
 import `in`.ac.iiita.go.fragments.LibraryFragment
 import `in`.ac.iiita.go.fragments.MessFragment
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
@@ -22,6 +24,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+
+        FirebaseApp.initializeApp(this)
+
+        FirebaseMessaging.getInstance().subscribeToTopic("everything")
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
