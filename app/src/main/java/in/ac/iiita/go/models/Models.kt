@@ -25,16 +25,19 @@ open class Lecture() : RealmObject() {
 
     open var lectureType: String? = null
 
+    open var section: String? = null
+
     open var teachersRef: RealmList<Faculty>? = null
 
     open var notificationEnabled: Boolean = false
 
-    constructor(id: String?, startTime: Long, endTime: Long, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
+    constructor(id: String?, startTime: Long, endTime: Long, section: String?, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
         this.id = id
         this.startTime = startTime
         this.endTime = endTime
         this.courseId = courseId
         this.day = day
+        this.section = section
         this.location = location
         this.lectureType = lectureType
         this.teachersRef = teachersRef
@@ -100,13 +103,13 @@ open class MessEvent() : RealmObject() {
 
     open var endTime: Long? = 0
 
-    open var hostelNum : String? = null
+    open var hostelNum: String? = null
 
     open var foodItems: RealmList<RealmString>? = null
 
     open var notificationEnabled: Boolean = false
 
-    constructor(id: String?, day: String?, type: String?, startTime: Long?, endTime: Long?,hostelNum: String?, foodItems: RealmList<RealmString>?) : this() {
+    constructor(id: String?, day: String?, type: String?, startTime: Long?, endTime: Long?, hostelNum: String?, foodItems: RealmList<RealmString>?) : this() {
         this.id = id
         this.day = day
         this.type = type
@@ -140,10 +143,28 @@ open class LibraryBook() : RealmObject() {
     }
 }
 
-open class RealmString() : RealmObject(){
+open class RealmString() : RealmObject() {
     open var stringVal: String? = null
 
     constructor(stringVal: String?) : this() {
         this.stringVal = stringVal
     }
 }
+
+class LostItem(
+        val id: String,
+        val name: String,
+        val description: String,
+        val ownerName: String,
+        val ownerExtraDetail: String,
+        val ownerPhone: Long
+)
+
+class FoundItem(
+        val id: String,
+        val name: String,
+        val description: String,
+        val founderName: String,
+        val founderExtraDetail: String,
+        val founderPhone: Long
+)

@@ -1,6 +1,9 @@
 package `in`.ac.iiita.go.activities
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.api.GoService
+import `in`.ac.iiita.go.fragments.LibraryFragment
+import `in`.ac.iiita.go.models.Lecture
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import org.jetbrains.anko.startActivity
@@ -9,7 +12,7 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(`in`.ac.iiita.go.R.layout.activity_home)
+        setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -22,13 +25,15 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById(`in`.ac.iiita.go.R.id.nav_view) as android.support.design.widget.NavigationView
+        val navigationView = findViewById(R.id.nav_view) as android.support.design.widget.NavigationView
         navigationView.setNavigationItemSelectedListener(this)
 
         addDummyDataToRealm()
-        supportFragmentManager.beginTransaction().add(`in`.ac.iiita.go.R.id.homeFrame, `in`.ac.iiita.go.fragments.LectureFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.homeFrame, `in`.ac.iiita.go.fragments.LectureFragment()).commit()
 
-        `in`.ac.iiita.go.api.GoService().storeData(this)
+        val go = GoService(this)
+        go.storeData()
+
     }
 
     fun addDummyDataToRealm(){
@@ -36,10 +41,10 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         val realm = io.realm.Realm.getDefaultInstance()
         realm.beginTransaction()
 
-        realm.copyToRealmOrUpdate(`in`.ac.iiita.go.models.Lecture("SMAT432Cs", 1230, 3230, "SMAT430C", "Monday", "CC3", "Theory", null))
-        realm.copyToRealmOrUpdate(`in`.ac.iiita.go.models.Lecture("SMAT432Cs1", 1230, 3230, "SMAT430C", "Monday", "CC3", "Theory", null))
-        realm.copyToRealmOrUpdate(`in`.ac.iiita.go.models.Lecture("SMAT432Cs2", 1230, 3230, "SMAT430C", "Monday", "CC3", "Theory", null))
-        realm.copyToRealmOrUpdate(`in`.ac.iiita.go.models.Lecture("SMAT432Cs3", 1230, 3230, "SMAT430C", "Monday", "CC3", "Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs1", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs2", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
+        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs3", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
 
         realm.commitTransaction()
     }
@@ -53,7 +58,7 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
     }
 
     override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
-        menuInflater.inflate(`in`.ac.iiita.go.R.menu.home, menu)
+        menuInflater.inflate(R.menu.home, menu)
         return true
     }
 
@@ -61,7 +66,7 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         val id = item.itemId
 
 
-        if (id == `in`.ac.iiita.go.R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true
         }
 
@@ -71,19 +76,19 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == `in`.ac.iiita.go.R.id.nav_camera) {
+        if (id == R.id.nav_timetable) {
             startActivity<BookAddActivity>()
 
-        } else if (id == `in`.ac.iiita.go.R.id.nav_gallery) {
-            supportFragmentManager.beginTransaction().replace(`in`.ac.iiita.go.R.id.homeFrame, `in`.ac.iiita.go.fragments.LibraryFragment()).commit()
+        } else if (id == R.id.nav_messMenu) {
+            supportFragmentManager.beginTransaction().replace(R.id.homeFrame, LibraryFragment()).commit()
 
-        } else if (id == `in`.ac.iiita.go.R.id.nav_slideshow) {
+        } else if (id == R.id.nav_library) {
 
-        } else if (id == `in`.ac.iiita.go.R.id.nav_manage) {
+        } else if (id == R.id.nav_lostFound) {
 
-        } else if (id == `in`.ac.iiita.go.R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
 
-        } else if (id == `in`.ac.iiita.go.R.id.nav_send) {
+        } else if (id == R.id.nav_send) {
 
         }
 
