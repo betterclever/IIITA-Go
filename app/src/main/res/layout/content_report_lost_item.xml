@@ -139,7 +139,7 @@
                 android:padding="2dp">
 
                 <EditText
-                    android:id="@+id/losterNameTV"
+                    android:id="@+id/ownerNameTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Your Name"/>
