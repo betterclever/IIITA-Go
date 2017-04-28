@@ -72,7 +72,7 @@ class Login : AppCompatActivity() {
         hostelSpinner.adapter = adapterHostel
 
         // For testing duration only
-        startActivity<HomeActivity>()
+        startActivity<ReportLostItemActivity>()
     }
 
     fun save(view: View) {
