@@ -77,30 +77,9 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/food1TV"
+                    android:id="@+id/foodTV"
                     android:padding="5dp"
                     android:text="Food Item 1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/food2TV"
-                    android:padding="5dp"
-                    android:text="Food Item 2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/food3TV"
-                    android:padding="5dp"
-                    android:text="Food Item 3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/food4TV"
-                    android:padding="5dp"
-                    android:text="Food Item 4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

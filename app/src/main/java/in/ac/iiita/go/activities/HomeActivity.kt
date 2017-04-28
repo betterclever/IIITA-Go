@@ -2,11 +2,11 @@ package `in`.ac.iiita.go.activities
 
 import `in`.ac.iiita.go.R
 import `in`.ac.iiita.go.api.GoService
+import `in`.ac.iiita.go.fragments.LectureFragment
 import `in`.ac.iiita.go.fragments.LibraryFragment
-import `in`.ac.iiita.go.models.Lecture
+import `in`.ac.iiita.go.fragments.MessFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
-import org.jetbrains.anko.startActivity
 
 class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support.design.widget.NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,25 +28,11 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
         val navigationView = findViewById(R.id.nav_view) as android.support.design.widget.NavigationView
         navigationView.setNavigationItemSelectedListener(this)
 
-        addDummyDataToRealm()
         supportFragmentManager.beginTransaction().add(R.id.homeFrame, `in`.ac.iiita.go.fragments.LectureFragment()).commit()
 
         val go = GoService(this)
         go.storeData()
 
-    }
-
-    fun addDummyDataToRealm(){
-        io.realm.Realm.init(this)
-        val realm = io.realm.Realm.getDefaultInstance()
-        realm.beginTransaction()
-
-        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
-        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs1", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
-        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs2", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
-        realm.copyToRealmOrUpdate(Lecture("SMAT432Cs3", 1230, 3230,"A", "SMAT430C", "Monday", "CC3", "Theory", null))
-
-        realm.commitTransaction()
     }
 
     override fun onBackPressed() {
@@ -76,20 +62,15 @@ class HomeActivity : android.support.v7.app.AppCompatActivity(), android.support
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == R.id.nav_timetable) {
-            startActivity<BookAddActivity>()
+        when(id){
+            R.id.nav_timetable ->
+                supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LectureFragment()).commit()
 
-        } else if (id == R.id.nav_messMenu) {
-            supportFragmentManager.beginTransaction().replace(R.id.homeFrame, LibraryFragment()).commit()
+            R.id.nav_messMenu ->
+                supportFragmentManager.beginTransaction().replace(R.id.homeFrame,MessFragment()).commit()
 
-        } else if (id == R.id.nav_library) {
-
-        } else if (id == R.id.nav_lostFound) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            R.id.nav_library ->
+                supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LibraryFragment()).commit()
         }
 
         drawer.closeDrawer(android.support.v4.view.GravityCompat.START)

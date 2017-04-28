@@ -10,19 +10,33 @@ import android.view.ViewGroup
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.layout_mess.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by betterclever on 4/26/2017.
  */
 
-class MessAdapter(val context: Context) : RecyclerView.Adapter<MessAdapter.ViewHolder>() {
+class MessAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<MessAdapter.ViewHolder>() {
 
     var messItems: RealmResults<MessEvent>
 
     init {
         Realm.init(context)
         val realm = Realm.getDefaultInstance()
-        messItems = realm.where(MessEvent::class.java).findAll()
+
+        val day = when(dayNum){
+            0 -> "Monday"
+            1 -> "Tuesday"
+            2 -> "Wednesday"
+            3 -> "Thursday"
+            4 -> "Friday"
+            5 -> "Saturday"
+            else -> "Sunday"
+        }
+
+        messItems = realm.where(MessEvent::class.java).equalTo("day",day).findAll()
+
     }
 
 
@@ -38,7 +52,29 @@ class MessAdapter(val context: Context) : RecyclerView.Adapter<MessAdapter.ViewH
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindMessItem(messEvent: MessEvent, context: Context){
+            itemView.foodTitleTV.text = messEvent.type
+            itemView.timeTV.text = messEvent.startTime!!.toTimeString() + " - " +
+                    messEvent.endTime!!.toTimeString()
+
+            var foodString = ""
+            for (food in messEvent.foodItems!!){
+                foodString += "\u25CF "+ food.stringVal + "\n"
+            }
+            foodString.removeSuffix("\n")
+            itemView.foodTV.text = foodString
+
             itemView.notificationSwitch.isChecked = messEvent.notificationEnabled
         }
+
+        fun Long.toTimeString() : String{
+
+            val millis = this.times(1000)
+            val df = SimpleDateFormat("hh:mm a")
+            df.timeZone = TimeZone.getTimeZone("GMT")
+            val str = df.format(millis)
+
+            return str
+        }
     }
+
 }

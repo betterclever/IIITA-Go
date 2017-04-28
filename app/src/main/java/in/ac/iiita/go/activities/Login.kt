@@ -3,7 +3,6 @@ package `in`.ac.iiita.go.activities
 import `in`.ac.iiita.go.R
 import `in`.ac.iiita.go.api.LoginAPI
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -59,6 +58,9 @@ class Login : AppCompatActivity() {
         courseSpinner.adapter = adapterCourse
         semSpinner.adapter = adapterSemester
 
+
+        // For testing duration only
+        startActivity<HomeActivity>()
     }
 
     fun save(view: View) {
@@ -76,10 +78,9 @@ class Login : AppCompatActivity() {
 
                 uiThread {
 
-                    val editor: SharedPreferences.Editor
-                    val sharedPreferences: SharedPreferences = getSharedPreferences("INFO_USR", Context.MODE_PRIVATE)
+                    val sharedPreferences = getSharedPreferences("INFO_USR", Context.MODE_PRIVATE)
 
-                    editor = sharedPreferences.edit()
+                    val editor = sharedPreferences.edit()
                     editor.putString("NAME", name.text.toString())
                     editor.putString("ROLL", enr.toString())
                     editor.putString("SEC", secSpinner.selectedItem.toString())

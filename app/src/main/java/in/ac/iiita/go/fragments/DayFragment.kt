@@ -10,10 +10,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import kotlinx.android.synthetic.main.fragment_day.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 /**
  * A simple [Fragment] subclass.
@@ -32,9 +30,8 @@ class LectureDayFragment : Fragment(), AnkoLogger {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        info("Hi")
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = LectureAdapter(context)
+        recyclerView.adapter = LectureAdapter(context,dayNum)
     }
 
 }
@@ -54,9 +51,8 @@ class MessDayFragment : Fragment(), AnkoLogger {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        info("Hi")
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = MessAdapter(context)
+        recyclerView.adapter = MessAdapter(context,dayNum)
     }
 
 }

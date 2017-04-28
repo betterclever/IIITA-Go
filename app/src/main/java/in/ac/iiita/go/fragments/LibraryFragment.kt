@@ -5,6 +5,7 @@ import `in`.ac.iiita.go.R
 import `in`.ac.iiita.go.adapter.BookAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -26,5 +27,7 @@ class LibraryFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = BookAdapter(context)
 
+
+        (activity as AppCompatActivity).supportActionBar!!.title = "Lecture Schedule"
     }
 }
