@@ -4,12 +4,12 @@ import `in`.ac.iiita.go.R
 import `in`.ac.iiita.go.models.Course
 import `in`.ac.iiita.go.models.Lecture
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.layout_lecture.view.*
@@ -68,8 +68,12 @@ class LectureAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<L
         fun bindLecture(lecture: Lecture){
 
             val ch = lecture.courseId!![1]
+
+            val colorGenerator = ColorGenerator.MATERIAL
+            val color = colorGenerator.getColor(lecture.courseId)
+
             itemView.iconIV.setImageDrawable(TextDrawable.builder().
-                    buildRound(ch.toString().capitalize(), Color.RED))
+                    buildRound(ch.toString().capitalize(), color))
 
             val course = realm.where(Course::class.java)
                     .equalTo("id",lecture.courseId).findFirst()

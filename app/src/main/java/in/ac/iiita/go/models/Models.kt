@@ -29,7 +29,7 @@ open class Lecture() : RealmObject() {
 
     open var teachersRef: RealmList<Faculty>? = null
 
-    open var notificationEnabled: Boolean = false
+    open var notificationEnabled: Boolean = true
 
     constructor(id: String?, startTime: Long, endTime: Long, section: String?, courseId: String?, day: String?, location: String?, lectureType: String?, teachersRef: RealmList<Faculty>?) : this() {
         this.id = id
@@ -107,7 +107,7 @@ open class MessEvent() : RealmObject() {
 
     open var foodItems: RealmList<RealmString>? = null
 
-    open var notificationEnabled: Boolean = false
+    open var notificationEnabled: Boolean = true
 
     constructor(id: String?, day: String?, type: String?, startTime: Long?, endTime: Long?, hostelNum: String?, foodItems: RealmList<RealmString>?) : this() {
         this.id = id
@@ -117,9 +117,6 @@ open class MessEvent() : RealmObject() {
         this.endTime = endTime
         this.hostelNum = hostelNum
         this.foodItems = foodItems
-    }
-
-    companion object {
     }
 }
 

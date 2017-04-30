@@ -2,6 +2,7 @@ package `in`.ac.iiita.go.fragments
 
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.activities.ReportFoundItemActivity
 import `in`.ac.iiita.go.adapter.FoundItemAdapter
 import `in`.ac.iiita.go.api.GoService
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_found.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.uiThread
 
 
@@ -33,8 +35,22 @@ class FoundFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
-        doAsync {
+        swipeRefreshLayout.setOnRefreshListener {
+            addData(adapter)
+        }
 
+        fab.setOnClickListener {
+            startActivity<ReportFoundItemActivity>()
+        }
+
+        swipeRefreshLayout.isRefreshing = true
+        addData(adapter)
+    }
+
+    fun addData(adapter: FoundItemAdapter){
+
+        doAsync {
+            swipeRefreshLayout.isRefreshing = false
             val list = goService!!.iiitaGoApi.getAllFoundItems().execute().body()
             uiThread {
                 adapter.addItems(list)

@@ -40,17 +40,17 @@ interface IIITAGoApi {
     fun getAllFoundItems(): Call<List<FoundItem>>
 
     @POST("LostItems")
-    fun reportNewLostItem(@Body item: LostItem)
+    fun reportNewLostItem(@Body item: LostItem) : Call<Void>
 
     @POST("FoundItems")
-    fun reportNewFoundItem(@Body item: FoundItem)
+    fun reportNewFoundItem(@Body item: FoundItem) : Call<Void>
 
 }
 
 interface NotificationAPI {
 
     @POST("fcm")
-    fun sendNotification(@Body notification: Notification)
+    fun sendNotification(@Body notification: Notification) : Call<Void>
 
 }
 
@@ -96,6 +96,7 @@ class GoService(val context: Context) : AnkoLogger {
             realm.beginTransaction()
             realm.copyToRealmOrUpdate(faculty)
             realm.commitTransaction()
+
             saveCourses()
 
         }
@@ -114,11 +115,12 @@ class GoService(val context: Context) : AnkoLogger {
 
             val response = client.newCall(request).execute()
             val rstr = response.body().string()
+
             val jsonArray = JSONArray(rstr)
 
             val courses = ArrayList<Course>()
 
-            for (i in 0..jsonArray.length() - 1) {
+            for (i in 0..jsonArray.length()-1) {
                 val jsonObject = jsonArray.getJSONObject(i)
 
                 val array = jsonObject["teachers"] as JSONArray
@@ -198,6 +200,7 @@ class GoService(val context: Context) : AnkoLogger {
                         lectureType = jsonObject["lectureType"] as String?,
                         teachersRef = teachers
                 ))
+
             }
 
             realm.beginTransaction()

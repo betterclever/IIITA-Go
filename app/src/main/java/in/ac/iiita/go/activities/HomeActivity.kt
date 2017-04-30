@@ -1,7 +1,6 @@
 package `in`.ac.iiita.go.activities
 
 import `in`.ac.iiita.go.R
-import `in`.ac.iiita.go.api.GoService
 import `in`.ac.iiita.go.fragments.LectureFragment
 import `in`.ac.iiita.go.fragments.LibraryFragment
 import `in`.ac.iiita.go.fragments.LostFound
@@ -9,7 +8,6 @@ import `in`.ac.iiita.go.fragments.MessFragment
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -19,6 +17,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
+import org.jetbrains.anko.share
+import org.jetbrains.anko.startActivity
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,11 +30,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         FirebaseApp.initializeApp(this)
 
         FirebaseMessaging.getInstance().subscribeToTopic("everything")
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -58,9 +53,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         supportFragmentManager.beginTransaction().add(R.id.homeFrame, LectureFragment()).commit()
 
-        val go = GoService(this)
-        go.storeData()
-
     }
 
     override fun onBackPressed() {
@@ -81,7 +73,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         if (id == R.id.action_settings) {
-            return true
+            startActivity<Login>()
         }
 
         return super.onOptionsItemSelected(item)
@@ -103,6 +95,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.nav_lostFound ->
                 supportFragmentManager.beginTransaction().replace(R.id.homeFrame,LostFound()).commit()
+
+            R.id.nav_share ->
+                    share("Check out IIITA Go","IIITA Go is one stop app for all IIITA Needs")
 
         }
 

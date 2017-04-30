@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.layout_mess.view.*
@@ -61,6 +63,15 @@ class MessAdapter(val context: Context, dayNum: Int) : RecyclerView.Adapter<Mess
         val realm = Realm.getDefaultInstance()
 
         fun bindMessItem(messEvent: MessEvent, context: Context){
+
+            val ch = messEvent.type!![0]
+
+            val colorGenerator = ColorGenerator.MATERIAL
+            val color = colorGenerator.getColor(messEvent.type)
+
+            itemView.iconIV.setImageDrawable(TextDrawable.builder().
+                    buildRound(ch.toString().capitalize(), color))
+
             itemView.foodTitleTV.text = messEvent.type
             itemView.timeTV.text = messEvent.startTime!!.toTimeString() + " - " +
                     messEvent.endTime!!.toTimeString()

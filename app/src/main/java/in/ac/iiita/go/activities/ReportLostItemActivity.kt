@@ -53,9 +53,6 @@ class ReportLostItemActivity : AppCompatActivity(),AnkoLogger {
 
         fab.setOnClickListener { view ->
 
-            /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()*/
-
             val report =  LostItem(
                     id = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(Date()),
                     name = itemNameET.text.toString(),
@@ -65,11 +62,11 @@ class ReportLostItemActivity : AppCompatActivity(),AnkoLogger {
                     ownerPhone = notesET.text.toString().toLong())
 
             doAsync {
-                goService.iiitaGoApi.reportNewLostItem(report)
+                goService.iiitaGoApi.reportNewLostItem(report).execute()
                 goService.notificationApi.sendNotification(Notification(
                         title = report.name + " lost",
                         body = report.description
-                ))
+                )).execute()
                 uiThread {
                     toast("Submitted Item")
                     finish()

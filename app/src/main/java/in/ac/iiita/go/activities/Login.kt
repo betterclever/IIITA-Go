@@ -72,7 +72,14 @@ class Login : AppCompatActivity() {
         hostelSpinner.adapter = adapterHostel
 
         // For testing duration only
-        startActivity<HomeActivity>()
+        //startActivity<HomeActivity>()
+        //finish()
+
+        loginButton.setOnLongClickListener {
+            startActivity<HomeActivity>()
+            this@Login.finish()
+            true
+        }
     }
 
     fun save(view: View) {
@@ -106,6 +113,7 @@ class Login : AppCompatActivity() {
 
                         toast("Logged in Successfully!! ")
                         startActivity<HomeActivity>()
+                        finish()
                     }
                 }
 

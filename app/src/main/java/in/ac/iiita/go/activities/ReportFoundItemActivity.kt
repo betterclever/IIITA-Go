@@ -8,7 +8,6 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.content_report_found_item.*
@@ -56,8 +55,6 @@ class ReportFoundItemActivity : AppCompatActivity(), AnkoLogger {
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
 
             val report =  FoundItem(
                     id = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(Date()),
@@ -70,11 +67,11 @@ class ReportFoundItemActivity : AppCompatActivity(), AnkoLogger {
             info(report)
 
             doAsync {
-                goService.iiitaGoApi.reportNewFoundItem(report)
+                goService.iiitaGoApi.reportNewFoundItem(report).execute()
                 goService.notificationApi.sendNotification(Notification(
                         title = report.name + " lost",
                         body = report.description
-                ))
+                )).execute()
                 uiThread {
                     toast("Submitted Item")
                     finish()

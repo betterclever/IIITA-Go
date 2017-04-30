@@ -2,6 +2,7 @@ package `in`.ac.iiita.go.fragments
 
 
 import `in`.ac.iiita.go.R
+import `in`.ac.iiita.go.activities.ReportLostItemActivity
 import `in`.ac.iiita.go.adapter.LostItemAdapter
 import `in`.ac.iiita.go.api.GoService
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_lost.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.uiThread
 
 
@@ -32,7 +34,23 @@ class LostFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
+        swipeRefreshLayout.setOnRefreshListener {
+            addData(adapter)
+        }
+
+        fab.setOnClickListener {
+            startActivity<ReportLostItemActivity>()
+        }
+
+        swipeRefreshLayout.isRefreshing = true
+        addData(adapter)
+
+    }
+
+    fun addData(adapter: LostItemAdapter){
+
         doAsync {
+            swipeRefreshLayout.isRefreshing = false
             val list = goService!!.iiitaGoApi.getAllLostItems().execute().body()
             uiThread {
                 adapter.addItems(list)

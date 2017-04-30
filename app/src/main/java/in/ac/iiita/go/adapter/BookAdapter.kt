@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.layout_library.view.*
@@ -40,12 +42,20 @@ class BookAdapter(val context: Context) : RecyclerView.Adapter<BookAdapter.ViewH
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindMessItem(libraryBook: LibraryBook, context: Context){
 
+            val ch = libraryBook.name!![0]
+            val colorGenerator = ColorGenerator.MATERIAL
+            val color = colorGenerator.getColor(libraryBook.name)
+
+            itemView.iconIV.setImageDrawable(TextDrawable.builder().
+                    buildRound(ch.toString().capitalize(), color))
+
             val sdf = SimpleDateFormat()
             sdf.applyPattern("dd/MM/YYYY")
 
             itemView.bookNameTV.text = libraryBook.name
             itemView.returnDateTV.text = "Return Date: "+ sdf.format(libraryBook.issueDate)
             itemView.notificationSwitch.isChecked = libraryBook.reminderEnabled
+
         }
     }
 }
